@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+  <head>
+    <meta charset="ISO-8859-1" />
+    <title>Mission Information</title>
+    <link rel="stylesheet" th:href="@{viewStyle.css}" />
+  </head>
+
+  <body>
+    <header>
+      <h1
+        th:if="${session.missionList != null and session.missionList.size() > 0}"
+      >
+        Here are the missions for
+        <span th:text="${session.missionList[0].agent}"></span>
+      </h1>
+    </header>
+    <hr />
+
+    <table th:if="${session.missionList != null AND session.missionList != ''}">
+      <tr>
+        <th>Title</th>
+        <th>Gadget 1</th>
+        <th>Gadget 2</th>
+        <th>Agent</th>
+        <th>Operations</th>
+      </tr>
+
+      <tr th:each="s : ${session.missionList}">
+        <td th:text="${s.title}"></td>
+        <td th:text="${s.gadget1}"></td>
+        <td th:text="${s.gadget2}"></td>
+        <td th:text="${s.agent}"></td>
+        <td>
+          <a th:href="@{/deleteMissionById/}+${s.id}">Delete</a>
+          <a th:href="@{/editMissionById/}+${s.id}">Edit</a>
+        </td>
+      </tr>
+    </table>
+
+    <hr />
+    <hr />
+    <p
+      th:unless="${session.missionList != null and session.missionList.size()  > 0}"
+    >
+      No missions found.
+    </p>
+    <div class="parent">
+      <a th:href="@{/}">Back to home</a>
+    </div>
+  </body>
+</html>

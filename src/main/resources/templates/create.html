@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns="https://www.thymeleaf.org">
+  <head>
+    <meta charset="ISO-8859-1" />
+    <title>Create Mission</title>
+    <link rel="stylesheet" th:href="@{createStyle.css}" />
+  </head>
+
+  <body>
+    <div class="parent">
+      <form
+        method="post"
+        action="#"
+        th:action="@{/createNewMission}"
+        th:object="${mission}"
+      >
+        <div>
+          <h1>Create the Mission</h1>
+          <label for="title">Mission Title</label>
+          <input
+            th:field="*{title}"
+            type="text"
+            id="title"
+            name="title"
+            required
+          />
+        </div>
+
+        <input type="hidden" th:field="*{id}" />
+
+        <div id="dropdown">
+          <h2>Select Agent:</h2>
+          <select id="agent" th:field="*{agent}">
+            <option
+              th:each="a, stat :*{agents}"
+              th:value="${a}"
+              th:text="${a}"
+            ></option>
+          </select>
+        </div>
+
+        <h2>Enter the gadgets</h2>
+        <div>
+          <label for="gadget1">Gadget 1</label>
+          <input
+            th:field="*{gadget1}"
+            type="text"
+            id="gadget1"
+            name="gadget1"
+            required
+          />
+        </div>
+
+        <div>
+          <label for="gadget2">Gadget 2</label>
+          <input
+            th:field="*{gadget2}"
+            type="text"
+            id="gadget2"
+            name="gadget2"
+            required
+          />
+        </div>
+
+        <div>
+          <input type="submit" value="Create Mission" />
+        </div>
+
+        <a th:href="@{/}">Back to home</a>
+      </form>
+    </div>
+  </body>
+</html>
