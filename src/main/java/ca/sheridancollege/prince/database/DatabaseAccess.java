@@ -86,7 +86,7 @@ public class DatabaseAccess
 		return rvalue;
 	}
 	
-	@SuppressWarnings("null")
+	
 	public Mission getMission(Long id)
 	{
 		MapSqlParameterSource namedParameter=new MapSqlParameterSource();
